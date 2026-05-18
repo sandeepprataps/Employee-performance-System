@@ -1,7 +1,4 @@
-import {
-  useState
-} from "react";
-
+import { useState } from "react";
 import axios from "axios";
 
 function AIRecommendation() {
@@ -16,7 +13,7 @@ function AIRecommendation() {
 
         const response =
           await axios.post(
-            "http://localhost:5000/api/ai/recommend"
+            "https://employee-backend-r4s8.onrender.com/api/ai/recommend"
           );
 
         setResult(

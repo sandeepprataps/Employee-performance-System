@@ -1,8 +1,5 @@
-import EmployeeForm
-from "../components/EmployeeForm";
-
-import EmployeeList
-from "../components/EmployeeList";
+import EmployeeForm from "../components/EmployeeForm";
+import EmployeeList from "../components/EmployeeList";
 
 function Dashboard() {
 

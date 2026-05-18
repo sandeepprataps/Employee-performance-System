@@ -16,8 +16,7 @@ function Login() {
 
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.value
+      [e.target.name]: e.target.value
     });
 
   };
@@ -28,11 +27,10 @@ function Login() {
 
     try {
 
-      const response =
-        await axios.post(
-          "https://employee-backend-r4s8.onrender.com/api/auth/login",
-          formData
-        );
+      const response = await axios.post(
+        "https://employee-backend-r4s8.onrender.com/api/auth/login",
+        formData
+      );
 
       localStorage.setItem(
         "token",
@@ -45,7 +43,12 @@ function Login() {
 
     } catch (error) {
 
-      alert("Login Failed");
+      console.log(error);
+
+      alert(
+        error.response?.data?.message ||
+        "Login Failed"
+      );
 
     }
 
@@ -63,7 +66,9 @@ function Login() {
           type="email"
           name="email"
           placeholder="Email"
+          value={formData.email}
           onChange={handleChange}
+          required
         />
 
         <br /><br />
@@ -72,7 +77,9 @@ function Login() {
           type="password"
           name="password"
           placeholder="Password"
+          value={formData.password}
           onChange={handleChange}
+          required
         />
 
         <br /><br />
