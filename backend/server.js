@@ -13,12 +13,44 @@ mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB Connected"))
 .catch(err => console.log(err));
 
+
+// TEST ROUTE
+
 app.get("/", (req, res) => {
   res.send("API Running");
 });
 
-const PORT = 5000;
+
+// IMPORT ROUTES
+
+const authRoutes =
+  require("./routes/authRoutes");
+
+const employeeRoutes =
+  require("./routes/employeeRoutes");
+
+const aiRoutes =
+  require("./routes/aiRoutes");
+
+
+// USE ROUTES
+
+app.use("/api/auth", authRoutes);
+
+app.use("/api/employees", employeeRoutes);
+
+app.use("/api/ai", aiRoutes);
+
+
+// SERVER
+
+const PORT =
+  process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+
+  console.log(
+    `Server running on ${PORT}`
+  );
+
 });

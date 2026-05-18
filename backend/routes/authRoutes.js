@@ -6,6 +6,9 @@ const User = require("../models/User");
 
 const router = express.Router();
 
+
+// SIGNUP API
+
 router.post("/signup", async (req, res) => {
 
   try {
@@ -17,9 +20,11 @@ router.post("/signup", async (req, res) => {
       await User.findOne({ email });
 
     if (existingUser) {
+
       return res.status(400).json({
         message: "Email already exists"
       });
+
     }
 
     const salt =
@@ -50,6 +55,9 @@ router.post("/signup", async (req, res) => {
 
 });
 
+
+// LOGIN API
+
 router.post("/login", async (req, res) => {
 
   try {
@@ -61,9 +69,11 @@ router.post("/login", async (req, res) => {
       await User.findOne({ email });
 
     if (!user) {
+
       return res.status(400).json({
         message: "User not found"
       });
+
     }
 
     const validPassword =
@@ -73,9 +83,11 @@ router.post("/login", async (req, res) => {
       );
 
     if (!validPassword) {
+
       return res.status(401).json({
         message: "Invalid password"
       });
+
     }
 
     const token = jwt.sign(
